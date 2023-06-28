@@ -5,14 +5,14 @@ import java.util.Arrays;
 public class main{
 
     public static String binarySearch(int[] elems, int low, int high, int key){
-/**
- * I used binary search as my interpolation search method and did it recursively
- * I chose recursive because it is easier for me to read
- *
- * This method runs faster because of its timing complexity is much better this is due to the
- * search method splitting the array in half to search by making a max time complexity of O(log(N))
- * compared to linear which is O(N) for worst case
- */
+        /**
+         * I used binary search as my interpolation search method and did it recursively
+         * I chose recursive because it is easier for me to read
+         *
+         * This method runs faster because of its timing complexity is much better this is due to the
+         * search method splitting the array in half to search by making a max time complexity of O(log(N))
+         * compared to linear which is O(N) for worst case
+         */
 
         if (low <= high){
             int mid = (low + high)/2;
@@ -29,6 +29,9 @@ public class main{
         return "Search key NOT FOUND";
     }
     public static String linearSearch(int[] elems, int key){
+        /**
+         * Using the original linear search
+         */
         for (int i = 0; i < elems.length; i++){
             if (elems[i] == key){
                 return ("Search key found at index " + i);
@@ -54,37 +57,45 @@ public class main{
         return "Search key NOT FOUND";
     }
     public static void main(String[] args){
+
+        // Initializing the original array
         System.out.print("Enter the number of elements of: ");
-        Scanner sc= new Scanner(System.in); //System.in is a standard input stream.
+        Scanner sc= new Scanner(System.in);
         int elemLength = sc.nextInt();
+
         System.out.println("Enter the elements of the array: ");
         int[] elem = new int[elemLength];
-
         for (int i = 0; i < elemLength; i++){
             elem[i] = sc.nextInt();
         }
 
+        // Entering the search key
         System.out.print("Enter the search key: ");
         int searchKey = sc.nextInt();
+
+        //Sort array
         Arrays.sort(elem);
 
+        //Linear
         long startTime = System.nanoTime();
         System.out.println("Using Linear Search: ");
         System.out.println(linearSearch(elem,searchKey));
         long endTime = System.nanoTime();
-        System.out.println((endTime-startTime)/1000000 + " ms");
+        System.out.println((endTime-startTime)/1000000.00 + " ms");
 
+        //Binary
         startTime = System.nanoTime();
         System.out.println("Using Interpolation Search: ");
         System.out.println(binarySearch(elem,0,elemLength, searchKey));
         endTime = System.nanoTime();
-        System.out.println((endTime-startTime)/1000000 + " ms");
+        System.out.println((endTime-startTime)/1000000.00 + " ms");
 
+        //Improved Linear
         startTime = System.nanoTime();
-        System.out.println("Using Linear Search: ");
+        System.out.println("Using Improved Linear Search: ");
         System.out.println(improvedLinearSearch(elem,searchKey));
         endTime = System.nanoTime();
-        System.out.println((endTime-startTime)/1000000 + " ms");
+        System.out.println((endTime-startTime)/1000000.00 + " ms");
     }
 
 }
